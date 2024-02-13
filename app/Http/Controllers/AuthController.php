@@ -14,4 +14,11 @@ class AuthController extends Controller
     {
         return view('home');
     }
+
+    // public function customAuthStepOne(Request->)
+    // {
+    //     return view('home');
+    // }
+
+
 }

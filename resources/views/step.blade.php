@@ -150,7 +150,7 @@
         }
 
         a {
-            color: #fff;
+            color: #007bff;
         }
     }
 
@@ -254,56 +254,50 @@
 </style>
 
 <body>
+
     @include('header')
     <main>
         <section>
             <div class="container cont2">
                 <div class="row row2">
                     <div class="col">
-                        <p><strong>Terms & Conditions and Privacy Policy</strong></p>
-                        <p>Last updated: April 02, 2022</p>
-                        <p>This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You.</p>
-                        <p>We use Your Personal data to provide and improve the Service. By using the Service, You agree to the collection and use of information in accordance with this Privacy Policy.</p>
-                        <div class="form-check mt-4">
-                            <input class="form-check-input" type="checkbox" value="" id="checkbox1">
-                            <label class="form-check-label" for="checkbox1">
-                                <p> I agree to the Terms &amp; Conditions &amp; Privacy Policy<p>
-                            </label>
-                        </div>
+                        <p><strong>Join the Care Staff Services today</strong></p>
+                        <p>Care Staff Services Ltd is one of the leading care companies in the UK, with more than 60 rated “Good” by the Care Quality Commission ('CQC').</p>
+                        <p>We are looking for Carers who share our values and are passionate about delivering high-quality care. By joining Care Staff Services Ltd you can get access to the following benefits:</p>
+                        <ul>
+                            <li><strong>More jobs & more opportunities</strong>: apply online for the jobs that match you.</li>
+                            <li><strong>Award-winning training</strong>: Get free access to our training platform and earn certificates for you to keep to develop your career as a Carer.</li>
+                            <li><strong>Be rewarded</strong>: in addition to industry-leading rates of pay Home Instead’s employee assistance programme gives you access to a discount portal with money off your favourite high-street stores and a free and confidential advice service with trained counsellors, should you ever need it.</li>
+                            <li><strong>Be supported</strong>: with local offices around the country there is a team close by to support both you and your client when you need it. 95% of CAREGivers say they are proud to work for Home Instead.</li>
+                        </ul>
+                        <p>These roles are subject to an enhanced Criminal Record Check and registration on the relevant update service. In addition, we will collect complete work history, four satisfactory references and require completion of specific training.</p>
+                        <p>To start your journey please complete this enquiry form.</p>
+                        <p>By providing your email address, you are agreeing to our <a href="#" target="_blank">Privacy Policy</a>.</p>
                     </div>
-                    <br>
-                    <form method="POST" action="{{url('custom-auth-step-2')}}" onsubmit="return validateForm()">
-                        @csrf
-                        <div class="row">
-                            <div class="col">
-                                <a href="{{url('/')}}" class="btn btn-success">Go Back</a>
-                            </div>
-                            <div class="col offset-md-4">
-                                <button type="submit" class="btn btn-primary" id="nextStepButton" disabled>Proceed to Next Step</button>
-                            </div>
-                        </div>
-                    </form>
                 </div>
             </div>
         </section>
     </main>
+
+
+    <form method="POST">
+        <section class="offset-md-2" style="margin-bottom: 30px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <input autocomplete="email" id="email" name="email" required type="text" class="form-control" placeholder="Your Email">
+                    </div>
+                    <div class="col">
+                        <a href="{{url('second-Step')}}" class="btn btn-primary">Next Step</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </form>
+
     <!-- Add some space from the bottom of the screen -->
     <div style="height: 50px;"></div>
 
-    <script>
-        function validateForm() {
-            var checkbox = document.getElementById('checkbox1');
-            var nextStepButton = document.getElementById('nextStepButton');
-
-            if (checkbox.checked) {
-                return true; // Allow form submission
-            } else {
-                alert('Please check the Privacy Policy first.');
-                return false; // Prevent form submission
-            }
-        }
-    </script>
 </body>
-
 
 </html>

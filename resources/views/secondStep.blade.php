@@ -252,7 +252,6 @@
         margin-bottom: 30px;
     }
 </style>
-
 <body>
     @include('header')
     <main>
@@ -265,21 +264,20 @@
                         <p>This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You.</p>
                         <p>We use Your Personal data to provide and improve the Service. By using the Service, You agree to the collection and use of information in accordance with this Privacy Policy.</p>
                         <div class="form-check mt-4">
-                            <input class="form-check-input" type="checkbox" value="" id="checkbox1">
+                            <input class="form-check-input" type="checkbox" value="" id="checkbox1" onchange="toggleButton()">
                             <label class="form-check-label" for="checkbox1">
                                 <p> I agree to the Terms &amp; Conditions &amp; Privacy Policy<p>
                             </label>
                         </div>
                     </div>
                     <br>
-                    <form method="POST" action="{{url('custom-auth-step-2')}}" onsubmit="return validateForm()">
-                        @csrf
+                    <form method="GET" id="nextStepForm">
                         <div class="row">
                             <div class="col">
-                                <a href="{{url('/')}}" class="btn btn-success">Go Back</a>
+                                <a href="{{url('step')}}" class="btn btn-success">Go Back</a>
                             </div>
                             <div class="col offset-md-4">
-                                <button type="submit" class="btn btn-primary" id="nextStepButton" disabled>Proceed to Next Step</button>
+                               <button type="button" class="btn btn-primary" id="nextStepButton" disabled onclick="proceedToNextStep()">Proceed to Next Step</button>
                             </div>
                         </div>
                     </form>
@@ -289,21 +287,29 @@
     </main>
     <!-- Add some space from the bottom of the screen -->
     <div style="height: 50px;"></div>
-
-    <script>
-        function validateForm() {
-            var checkbox = document.getElementById('checkbox1');
-            var nextStepButton = document.getElementById('nextStepButton');
-
-            if (checkbox.checked) {
-                return true; // Allow form submission
-            } else {
-                alert('Please check the Privacy Policy first.');
-                return false; // Prevent form submission
-            }
-        }
-    </script>
 </body>
 
+<script>
+    function toggleButton() {
+        var checkbox = document.getElementById('checkbox1');
+        var nextStepButton = document.getElementById('nextStepButton');
+
+        if (checkbox.checked) {
+            nextStepButton.disabled = false;
+        } else {
+            nextStepButton.disabled = true;
+        }
+    }
+
+    function proceedToNextStep() {
+        var checkbox = document.getElementById('checkbox1');
+
+        if (checkbox.checked) {
+            window.location.href = "{{url('custom-auth-step-3')}}";
+        } else {
+            alert('Please check the Terms & Conditions and Privacy Policy first.');
+        }
+    }
+</script>
 
 </html>
