@@ -257,7 +257,7 @@
 
 <body>
 
-    @include('header')
+    @include('header', ['pageTitle' => 1])
     <main>
         <section>
             <div class="container cont2">
@@ -269,10 +269,10 @@
                         <ul>
                             <li><strong>More jobs & more opportunities</strong>: apply online for the jobs that match you.</li>
                             <li><strong>Award-winning training</strong>: Get free access to our training platform and earn certificates for you to keep to develop your career as a Carer.</li>
-                            <li><strong>Be rewarded</strong>: in addition to industry-leading rates of pay Home Instead’s employee assistance programme gives you access to a discount portal with money off your favourite high-street stores and a free and confidential advice service with trained counsellors, should you ever need it.</li>
-                            <li><strong>Be supported</strong>: with local offices around the country there is a team close by to support both you and your client when you need it. 95% of CAREGivers say they are proud to work for Home Instead.</li>
+                            <li><strong>Be rewarded</strong>: has Care Staff Service on there also.</li>
+                            <li><strong>Be supported</strong>: we make it one of our priorities to support our staff in their journey of health and social care roles. We have a helpline that helps you and your family through any problems that you may experience and gives you counselling.</li>
                         </ul>
-                        <p>These roles are subject to an enhanced Criminal Record Check and registration on the relevant update service. In addition, we will collect complete work history, four satisfactory references and require completion of specific training.</p>
+                        <p>These roles are subject to an enhanced Criminal Record Check and registration on the relevant update service. In addition, we will collect complete work history, Two satisfactory references and require completion of specific training. Add that driving is an essential requirement of the role</p>
                         <p>To start your journey please complete this enquiry form.</p>
                         <p>By providing your email address, you are agreeing to our <a href="#" target="_blank">Privacy Policy</a>.</p>
                     </div>
@@ -287,9 +287,16 @@
         <section class="offset-md-2" style="margin-bottom: 30px;">
             <div class="container">
                 <div class="row">
+
                     <div class="col">
+
                         <input autocomplete="email" id="email" name="email"  type="text" class="form-control" placeholder="Your Email">
                         <div id="emailError" style="color: red;"></div>
+                        @if(session('message'))
+                        <div class="alert alert-info">
+                            {{ session('message') }}
+                        </div>
+                    @endif
                     </div>
                     <div class="col">
                         <button type="submit" class="btn btn-primary" name="nextStep">Next Step</button>

@@ -255,7 +255,7 @@
 
 <body>
 
-    @include('header')
+    @include('header', ['pageTitle' => 1])
     <main>
         <section>
             <div class="container cont2">

@@ -253,7 +253,7 @@
     }
 </style>
 <body>
-    @include('header')
+    @include('header', ['pageTitle' => 2])
     <main>
         <section>
             <div class="container cont2">
@@ -266,7 +266,8 @@
                         <div class="form-check mt-4">
                             <input class="form-check-input" type="checkbox" value="" id="checkbox1" onchange="toggleButton()">
                             <label class="form-check-label" for="checkbox1">
-                                <p> I agree to the Terms &amp; Conditions &amp; Privacy Policy<p>
+                                <p>I agree to the <a href="https://carestaffservices.com/team/" target="_blank" style="color: black; text-decoration: underline;">Terms &amp; Conditions</a> &amp; Privacy Policy.</p>
+
                             </label>
                         </div>
                     </div>
@@ -305,7 +306,7 @@
         var checkbox = document.getElementById('checkbox1');
 
         if (checkbox.checked) {
-            window.location.href = "{{url('custom-auth-step-3')}}";
+            window.location.href = "{{url('custom-auth-Bio')}}";
         } else {
             alert('Please check the Terms & Conditions and Privacy Policy first.');
         }

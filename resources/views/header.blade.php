@@ -4,15 +4,17 @@
         <h1>Care Staff Services LTD</h1>
     </div>
 </header>
-<form id="multistepsform" class="bg-light p-4 rounded">
+<form id="multistepsform" class="bg-light p-4 rounded" style="zoom:0.8;">
     <!-- progressbar -->
     <ul id="progressbar" class="list-unstyled d-flex justify-content-between">
         <li class="active" style="display: none">Account Setup</li>
-        <li class="active">Personal Details</li>
-        <li>Social Profiles</li>
-        <li>Social Profiles</li>
-        <li>Social Profiles</li>
-        <li>Social Profiles</li>
+        <li @if(isset($pageTitle) && $pageTitle == 1) class="active" @endif>Home</li>
+        <li @if(isset($pageTitle) && $pageTitle == 2) class="active" @endif>Terms & Conditions</li>
+        <li @if(isset($pageTitle) && $pageTitle == 3) class="active" @endif>Profiles</li>
+        <li @if(isset($pageTitle) && $pageTitle == 4) class="active" @endif>Experience & Job</li>
+        <li @if(isset($pageTitle) && $pageTitle == 5) class="active" @endif>Social Profiles</li>
+        {{-- <li @if(isset($pageTitle) && $pageTitle == 6) class="active" @endif>Social Profiles</li> --}}
+
     </ul>
     <!-- fieldsets -->
 </form>

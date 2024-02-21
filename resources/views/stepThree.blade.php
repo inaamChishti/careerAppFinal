@@ -13,6 +13,8 @@
 
         <!-- Google Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Merriweather:400,400i,600,700i|Source+Sans+Pro:400,500,600,700" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
 
         <style>
             body {
@@ -249,11 +251,12 @@ form#multistepsform section {
 
 <body>
 
-    @include('header')
+    @include('header', ['pageTitle' => 4])
     <main>
         <form action="{{ url('custom-auth-step-4') }}" method="GET">
             @csrf
             <section>
+                <input type="hidden" name="bio" value="{{$bio}}">
                 <div class="container text-center">
 
                     <h2 class="mb-4">Additional Questions</h2>
@@ -266,6 +269,7 @@ form#multistepsform section {
                         <div class="col">
                             <select class="form-select" id="visaStatus" name="visaStatus" required>
                                 <option value="" disabled selected>Select your visa status</option>
+                                <option value="British_Citizen">British Citizen</option>
                                 <option value="student">Student</option>
                                 <option value="skilledWorker">Skilled Worker</option>
                                 <option value="psw">PSW (Post-Study Work)</option>
@@ -333,13 +337,47 @@ form#multistepsform section {
                             </select>
                         </div>
                     </div>
+
+                    <div class="row align-items-center mt-3">
+                        <div class="col">
+                            <label for="care_notes">Note: Please note, for domiciliary care work, you would need to take out business insurance.</label>
+                        </div>
+                        <div class="col">
+                            <textarea class="form-control" id="care_notes" name="note_for_domiciliary_care_work_you_would_need_to_take_out_business_insurance" rows="4" required></textarea>
+                        </div>
+                    </div>
+
+
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <label for="How_did_you_hear_about_us">8. if you have any care qualifications if yes then put a box for them to explain which ones?</label>
+                        </div>
+                        <div class="col">
+                            <select class="form-select" id="qualifications" name="if_you_have_any_care_qualifications_if_yes_then_put_a_box_for_them_to_explain_which_ones" required>
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                    </div>
+
+
                 </div>
                 <br>
 
                 <div class="row">
-                    <div class="col">
-                        <a href="{{ url('second-Step') }}" class="btn btn-success">Go Back</a>
+                    {{-- <div class="col">
+                        <a href="{{ url('custom-auth-Bio') }}" class="btn btn-success">Go Back</a>
+                    </div> --}}
+                    <div class="col ">
+                        <a href="#" class="btn btn-success" onclick="goBack()">Go Back</a>
                     </div>
+
+                    <script>
+                        function goBack() {
+                            window.history.back();
+                        }
+                    </script>
                     <div class="col">
                         <button type="submit" class="btn btn-primary" id="proceedButton">Proceed to Next Step</button>
                     </div>
@@ -362,5 +400,100 @@ form#multistepsform section {
             $('#additionalQuestionsForm').submit();
         });
     });
+
+    $(document).ready(function() {
+  // Event listener for change on the select dropdown
+  $('#How_did_you_hear_about_us').on('change', function() {
+    // Check if the selected value is "other"
+    if ($(this).val() === 'other') {
+      // Append a new textarea after the select dropdown
+      $(this).parent().after(`
+      <div class=" other_note row align-items-center mt-3">
+                        <div class="col">
+                            <label for="care_notes">Note: Please explain How did you hear about us?.</label>
+                        </div>
+                        <div class="col">
+                            <textarea class="form-control" style="margin-left:  10px;" id="care_notes" name="How_did_you_hear_about_us_note" rows="4" ></textarea>
+                        </div>
+                    </div>
+      `);
+    } else {
+      // Remove the textarea if the selection changes from "other"
+      $('.other_note').remove();
+    }
+  });
+
+
+  $('#visaStatus').on('change', function() {
+    // Check if the selected value is "other"
+    if ($(this).val() === 'other') {
+      // Append a new textarea after the select dropdown
+      $(this).parent().after(`
+      <div class=" visa_note row align-items-center mt-3">
+                        <div class="col">
+                            <label for="care_notes">Note: Please explain What is your visa status?.</label>
+                        </div>
+                        <div class="col">
+                            <textarea class="form-control" style="margin-left:  10px;" id="care_notes" name="visaStatus_note" rows="4" ></textarea>
+                        </div>
+                    </div>
+      `);
+    } else {
+      // Remove the textarea if the selection changes from "other"
+      $('.visa_note').remove();
+    }
+  });
+
+  $('#qualifications').on('change', function() {
+    // Check if the selected value is "other"
+    if ($(this).val() === 'Yes') {
+      // Append a new textarea after the select dropdown
+      $(this).parent().after(`
+      <div class=" visa_note row align-items-center mt-3">
+                        <div class="col">
+                            <label for="qualifications">Note: Please explainif you have any care qualifications if yes then put a box for them to explain which ones?.</label>
+                        </div>
+                        <div class="col">
+                            <textarea class="form-control" style="margin-left:  10px;" id="qualifications" name="Write_Note_if_you_have_any_care_qualifications_if_yes_then_put_a_box_for_them_to_explain_which_ones" rows="4" ></textarea>
+                        </div>
+                    </div>
+      `);
+    } else {
+      // Remove the textarea if the selection changes from "other"
+      $('.visa_note').remove();
+    }
+  });
+});
+
+
+
 </script>
+<script>
+    $(document).ready(function () {
+      // Function to check if all fields are filled
+      function checkFields() {
+        var allFilled = true;
+
+        // Loop through each input field
+        $('#personalInfoForm input').each(function () {
+          if ($(this).val() === '') {
+            allFilled = false;
+            return false; // Exit the loop if an empty field is found
+          }
+        });
+
+        // Enable or disable the button based on the result
+        $('#nextStepButton').prop('disabled', !allFilled);
+      }
+
+      // Add event listeners to the input fields
+      $('#personalInfoForm input').on('input', function () {
+        checkFields();
+      });
+
+      // Call the function initially to set the initial state of the button
+      checkFields();
+    });
+  </script>
+
 </html>

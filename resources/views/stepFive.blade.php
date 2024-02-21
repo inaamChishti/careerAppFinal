@@ -391,17 +391,18 @@
 </style>
 
 <body>
-    @include('header')
+    @include('header', ['pageTitle' => 6])
 
     <form id="regForm" action="{{url('store-all-steps')}}" method="post">
         @csrf
-        <h1>Sections:</h1>
+        {{-- <h1>Sections:</h1> --}}
         <!-- One "tab" for each step in the form: -->
+
         <input type="hidden" name="prev_data" value="{{ json_encode($formData) }}">
 
         {{-- tab 1 --}}
-        <div class="tab">
-            <label class="form-label" style="font-size: 20px; font-weight: bold; color: #22dba8;">Section 1 – Performance Question</label>
+        {{-- <div class="tab">
+            <label class="form-label" style=" text-align: center;font-size: 20px; font-weight: bold; color: #22dba8;">Section 1 – Performance Question</label>
 
             <div style="margin-bottom: 20px;" class="mb-3">
                 <label style="font-weight: bold; color: #333; display: block; margin-bottom: 5px;" for="teamwork">1.
@@ -487,7 +488,7 @@
                     style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #22dba8; border-radius: 4px; resize: vertical;"
                     class="form-control" id="serviceNeeds" name="Please_provide_3_exxamples_of_actions_that_would_breach_professional_boundaries_between_you_and_your_service_user" rows="3"></textarea>
             </div>
-        </div>
+        </div> --}}
 
 
 
@@ -498,7 +499,7 @@
 
         {{-- tab2 start --}}
         <div class="tab">
-            <label class="form-label" style="font-size: 20px; font-weight: bold; color: #22dba8;">Section 2 – Multiple Choice Questions</label>
+            {{-- <label class="form-label" style="text-align: center;font-size: 20px; font-weight: bold; color: #22dba8;">Section 2 – Multiple Choice Questions</label> --}}
 
             <div class="mb-4">
                 <label for="question1" class="form-label">Question 1: If there was no reply from the Service User’s
@@ -762,7 +763,7 @@
 
         {{-- tab3 start --}}
         <div class="tab">
-            <label class="form-label" style="font-size: 20px; font-weight: bold; color: #22dba8;">Section 3: Circle the correct spellings of each word</label>
+            {{-- <label class="form-label" style="text-align: center;font-size: 20px; font-weight: bold; color: #22dba8;">Section 3: Circle the correct spellings of each word</label> --}}
             <div class="mb-4">
                 <input type="hidden" class="form-check-input" id="" name="Circle_the_correct_spellings_of_each_word"
                 value="Section 3: Circle the correct spellings of each word">
@@ -926,7 +927,7 @@
 
 
         {{-- tab4 start --}}
-        <div class="tab">
+        {{-- <div class="tab">
             <label class="form-label" style="font-size: 20px; font-weight: bold; color: #22dba8;">Section 4 - Numeracy</label>
             <div class="mb-4">
 
@@ -985,13 +986,13 @@
                     <textarea name="If_a_medication_record_sheet_states_that_there_are_7_tablets_to_be_taken_in_the_morning_2_tablets_at_lunchtime_and_3_tablets_in_the_evening_how_many_tablets_should_there_be_in_the_AM_section_of_a_dossett_box" style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #22dba8; border-radius: 4px; resize: vertical;" id="question9" class="form-control"></textarea>
                 </div>
             </div>
-        </div>
+        </div> --}}
         {{-- tab4 end --}}
 
         {{-- tab5 start --}}
         <div class="tab">
             <div class="mb-4">
-                <label class="form-label" style="font-size: 20px; font-weight: bold; color: #22dba8;">Section 5 – Literacy, Daily Log Completion</label>
+                <label class="form-label" style="text-align: center;font-size: 20px; font-weight: bold; color: #22dba8;">Section 5 – Literacy, Daily Log Completion</label>
 
                 <!-- Description -->
                 <p style="font-size: 16px; margin-bottom: 15px;">After each visit detailed daily record logs are completed. With the information listed below, please record how you would detail this information in the daily record log section below.</p>
@@ -1045,13 +1046,13 @@
         </div>
         {{-- tab5 end --}}
         <!-- Circles which indicates the steps of the form: -->
-        <div style="text-align:center;margin-top:40px;">
+        {{-- <div style="text-align:center;margin-top:40px;">
             <span class="step"></span>
             <span class="step"></span>
             <span class="step"></span>
             <span class="step"></span>
             <span class="step"></span>
-        </div>
+        </div> --}}
     </form>
 
     <script>
